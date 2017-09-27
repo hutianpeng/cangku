@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis 总的配置文件，每个项目包含一个
+该文件放置的是一些全局信息，如数据库链接和MyBatis的属性  -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<properties resource="db.properties"></properties><!--配置file文件 111111111 -->
+<settings>
+<setting name="autoMappingBehavior" value="NONE"/><!--同名时禁止自动匹配 ==== -->
+</settings>
+
+<typeAliases>
+<typeAlias type="domain.Ge" alias="Ge"/><!--将类型替代简短的名字  11111111-->
+<typeAlias type="domain.Log" alias="log"/>
+</typeAliases>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>                 <!-- 实现 mapper的路径 -->
+    <mapper resource="repository/GeRepositoryMapper.xml"/>
+    <mapper resource="repository/LogRepositoryMapper.xml"/>
+  </mappers>
+</configuration>

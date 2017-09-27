@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="repository.LogRepository">
+
+<resultMap id="logResultMap" type="log">
+	  <id property="id" column="id" />
+	  <result property="lastTime" column="lastTime"/>
+	  <association property="ge" column="uid" javaType="Ge">
+	         <id property="id" column="i" />
+	         <result property="name" column="n"/>
+	         <result property="password" column="p"/>
+	 
+	   </association>
+</resultMap>
+    <select id="fandAll" resultMap="logResultMap" parameterType="domain.Ge">
+    <!-- select * from log inner join ge on log.uid=ge.i where log.uid=#{id} -->
+    select *from log where log.uid=#{id}
+    </select>
+
+  
+  
+  <insert id="save" parameterType="domain.Log">
+      insert into Log(lasttime,uid) values(#{lastTime},#{ge.id})
+  </insert>
+  
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="repository.GeRepository">
+
+<resultMap id="geResultMap" type="Ge">
+  <id property="id" column="i" />
+  <result property="name" column="n"/>
+  <result property="password" column="p"/>
+  	
+  <collection property="logs" ofType="Log">
+      <id property="id" column="id" />
+	  <result property="lastTime" column="lastTime"/>
+  </collection>
+  
+</resultMap>
+  <select id="fandAll" resultMap="geResultMap">
+ 
+    select * from ge
+  </select>
+  <insert id="save" ><!--多个参数去掉 resulttype 等  -->
+      insert into ge(n,p) values(#{name},#{password})
+  </insert>
+  
+</mapper>
