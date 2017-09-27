@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="yangdu.domain.repository.YongRepository">  
+<!--当属性名和表名不同时用resultMap  -->
+<!-- id任意起名字   type 返回值   包名.实体名 -->
+<resultMap id="yongResultMap" type="yangdu.domain.Yong">
+<!-- property 属性名      colum  列名         主键用id   其余用result -->
+  <id property="id" column="i" />
+  <result property="name" column="n"/>
+  <result property="password" column="p"/>
+</resultMap>
+<!-- resultType 改为resultMap  值为上面id所对应的值 -->
+ <select id="fandAll" resultMap="yongResultMap">
+  select *from yong
+ </select>
+ 
+ <insert id="save" parameterType="yangdu.domain.Yong">
+  insert into yong(n,p) values(#{name},#{password})
+ </insert>
+ <update id="update" parameterType="yangdu.domain.Yong">
+ 
+ </update>
+  
+</mapper>
